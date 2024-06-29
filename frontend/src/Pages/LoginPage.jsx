@@ -37,7 +37,7 @@ const LoginPage = () => {
                 <span>Log in with Google</span>
               </button>
             </form>
-            <p className="text-center signup mt-4">Don't have account? <a href="#" className="text-decoration-none fw-semibold">Sign up now</a></p>
+            <p className="text-center signup mt-4">Don't have account? <a href="/signup" className="text-decoration-none fw-semibold">Sign up now</a></p>
           </div>
         </div>
         <div className="col-lg-5 col-12 p-0">
