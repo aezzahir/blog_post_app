@@ -7,7 +7,7 @@ const Header = () => {
       <div className="collapse navbar-collapse" id="collapsibleNavbar">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="#home">
+            <a className="nav-link" href="/">
               HOME
             </a>
           </li>
@@ -17,12 +17,12 @@ const Header = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="signin">
+            <a className="nav-link" href="login">
               LOGIN
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#register">
+            <a className="nav-link" href="register">
               REGISTER
             </a>
           </li>

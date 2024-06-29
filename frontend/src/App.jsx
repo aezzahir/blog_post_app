@@ -6,14 +6,15 @@ import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
+import RegisterPage from "./Pages/RegisterPage";
 import "./App.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
-      <Route path="/signin" element={<LoginPage />}></Route>
-      <Route path="/signup" element={<LoginPage />}></Route>
+      <Route path="/login" element={<LoginPage />}></Route>
+      <Route path="/register" element={<RegisterPage />}></Route>
     </Routes>
   );
 }

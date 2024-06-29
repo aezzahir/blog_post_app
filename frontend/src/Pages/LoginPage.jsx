@@ -1,8 +1,13 @@
 import React from 'react';
+import Header from "../components/Header";
 import './LoginPage.css'; // We'll put the CSS in a separate file
 
 const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
+    <main>
+    <div><Header /></div>
     <div className="container py-5 px-5 bg">
       <div className="row justify-content-between bg-white rounded-start-4">
         <div className="col-lg-7 d-flex justify-content-center align-items-center">
@@ -13,11 +18,17 @@ const LoginPage = () => {
               <div className="row">
                 <div className="mb-3 col-12">
                   <label htmlFor="email" className="mb-1 fw-medium">Email</label>
-                  <input type="email" className="form-control" id="email" placeholder="Enter Email" />
+                  <input type="email" className="form-control" id="email" placeholder="Enter Email"
+                  value={email}
+                  onChange={ev => setEmail(ev.target.value)}
+                  />
                 </div>
                 <div className="col-12">
                   <label htmlFor="password" className="mb-1 fw-medium">Password</label>
-                  <input type="password" className="form-control" id="password" placeholder="Enter Password" />
+                  <input type="password" className="form-control" id="password" placeholder="Enter Password"
+                   value={password}
+                   onChange={ev => setPassword(ev.target.value)}
+                   />
                 </div>
                 <div className="col-12 d-flex justify-content-between mt-3 checkbox">
                   <div className="d-flex">
@@ -27,7 +38,7 @@ const LoginPage = () => {
                   <a href="#" className="fw-semibold text-decoration-none">Forgot password</a>
                 </div>
               </div>
-              <button type="submit" className="btn mt-4 w-100">Sign in</button>
+              <button type="submit" className="btn mt-4 w-100">Login</button>
               <button type="button" className="btn mt-4 w-100 d-flex justify-content-center align-items-center">
                 <i className="bi bi-apple me-2 fs-5"></i>
                 <span>Log in with Apple</span>
@@ -37,7 +48,7 @@ const LoginPage = () => {
                 <span>Log in with Google</span>
               </button>
             </form>
-            <p className="text-center signup mt-4">Don't have account? <a href="/signup" className="text-decoration-none fw-semibold">Sign up now</a></p>
+            <p className="text-center signup mt-4">Don't have account? <a href="/register" className="text-decoration-none fw-semibold">Register now</a></p>
           </div>
         </div>
         <div className="col-lg-5 col-12 p-0">
@@ -46,6 +57,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    </main>
   );
 };
 
