@@ -6,6 +6,10 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser"); // Added cookie-parser
 const User = require("./models/User");
+const multer = require("multer");
+const upload = multer({ dest: "./uploads" });
+const fs = require("fs");
+const Post = require("./models/Post");
 const connectDB = require("./configuration/dbConf");
 const port = 4000;
 const secretKey = "hgkdllepfjhj5666DHJF64jjdkdkldldj";
@@ -79,6 +83,35 @@ app.get("/profile", (req, res) => {
 
 app.post("/logout", (req, resp) => {
   resp.cookie("token", "").json("ok");
+});
+
+app.post("/post", upload.single("file"), async (req, resp) => {
+  const { title, summary, content } = req.body;
+  const { originalname, path } = req.file;
+  const parts = originalname.split(".");
+  const ext = parts[parts.length - 1];
+  const newPath = path + "." + ext;
+  fs.renameSync(path, newPath);
+  const { token } = req.cookies;
+
+  if (!token) {
+    return res.status(403).json({ error: "Token not provided" });
+  }
+
+  jwt.verify(token, secretKey, {}, async (err, userInfo) => {
+    if (err) {
+      return res.status(401).json({ error: "Failed to authenticate token" });
+    }
+    const newPost = new Post({
+      title,
+      summary,
+      content,
+      cover: newPath,
+      author: userInfo.id,
+    });
+    await newPost.save();
+    resp.json(newPost);
+  });
 });
 
 // mongodb+srv://ayoub:ayoub2024@alx.mtqvj3s.mongodb.net/?retryWrites=true&w=majority&appName=alx
