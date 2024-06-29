@@ -5,12 +5,14 @@ import Posts from "./Pages/Posts";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
+import LoginPage from "./Pages/LoginPage";
 import "./App.css";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />}></Route>
+      <Route path="/login" element={<LoginPage />}></Route>
     </Routes>
   );
 }
