@@ -46,7 +46,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Posts />
     </main>
   );
 };

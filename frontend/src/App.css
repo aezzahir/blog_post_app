@@ -84,6 +84,7 @@ body {
 }
 
 #client {
+  margin-top: 100px;
   margin-bottom: 0;
 }
 .client img {

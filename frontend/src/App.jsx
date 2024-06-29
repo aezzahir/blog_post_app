@@ -3,19 +3,26 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Posts from "./Pages/Posts";
 import Header from "./components/Header";
+import Layout from "./components/Layout";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import LoginPage from "./Pages/LoginPage";
 import RegisterPage from "./Pages/RegisterPage";
+import { UserContextProvider } from "./components/UserContext";
 import "./App.css";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />}></Route>
-      <Route path="/login" element={<LoginPage />}></Route>
-      <Route path="/register" element={<RegisterPage />}></Route>
-    </Routes>
+    <UserContextProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />}></Route>
+          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/register" element={<RegisterPage />}></Route>
+        </Route>
+      </Routes>
+    </UserContextProvider>
   );
 }
 
