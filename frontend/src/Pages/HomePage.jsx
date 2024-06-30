@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../components/Header";
+import "@fortawesome/fontawesome-free/css/all.css";
 import Posts from "./Posts";
 
 const HomePage = () => {

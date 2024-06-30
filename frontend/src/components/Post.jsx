@@ -1,21 +1,38 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-free/css/all.css";
+import { formatISO9075 } from "date-fns";
 
-const Post = () => {
+const Post = ({ title, summary, createdAt, cover, content, author }) => {
+  // Function to strip HTML tags from content
+  const stripHtmlTags = (html) => {
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
   return (
-    <div className="col-md-6">
-      <div className="row">
-        <div className="col-md-4">
-          <img src="assets/client1.png" alt="Client 1" />
+    <div className="row">
+      <div className="col-md-4">
+        <img
+          src={"http://localhost:4000/" + cover}
+          className="card-img"
+          alt={title}
+        />
+      </div>
+      <div className="col-md-8">
+        <blockquote className="post-summary">{summary}</blockquote>
+        <hr className="client-line2" />
+        <div className="d-flex align-items-center">
+          <p>
+            <a className="mr-3 author">{author["email"]}</a>
+            <time>{formatISO9075(new Date(createdAt))}</time>
+          </p>
         </div>
-        <div className="col-md-8">
-          <blockquote>
-            <i className="fas fa-quote-left"></i>I see DevPath support as more
-            of a partner to my company than a resource. I can pick up the phone
-            and talk to anyone at any time, and the way that they interact with
-            us as a business makes it really simple.
-          </blockquote>
-          <hr className="client-line2" />
-          <address>- Eric, small business owner</address>
+        <div>
+          <p
+            className="summary"
+            dangerouslySetInnerHTML={{ __html: stripHtmlTags(content) }}
+          />
         </div>
       </div>
     </div>

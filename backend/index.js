@@ -9,6 +9,7 @@ const User = require("./models/User");
 const multer = require("multer");
 const upload = multer({ dest: "./uploads" });
 const fs = require("fs");
+const path = require("path");
 const Post = require("./models/Post");
 const connectDB = require("./configuration/dbConf");
 const port = 4000;
@@ -21,6 +22,7 @@ connectDB();
 app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(express.json());
 app.use(cookieParser()); // Added cookie-parser
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
@@ -114,4 +116,9 @@ app.post("/post", upload.single("file"), async (req, resp) => {
   });
 });
 
+app.get("/post", async (req, resp) => {
+  resp.json(await Post.find().populate("author", ["email"]));
+});
+
 // mongodb+srv://ayoub:ayoub2024@alx.mtqvj3s.mongodb.net/?retryWrites=true&w=majority&appName=alx
+// .populate("author", ["email"])
