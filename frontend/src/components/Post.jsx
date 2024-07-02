@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { formatISO9075 } from "date-fns";
 
-const Post = ({ title, summary, createdAt, cover, content, author }) => {
+const Post = ({ _id, title, summary, content, cover, createdAt, author }) => {
   // Function to strip HTML tags from content
   const stripHtmlTags = (html) => {
     const doc = new DOMParser().parseFromString(html, "text/html");

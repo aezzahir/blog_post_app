@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/Post";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -42,9 +43,12 @@ const Posts = () => {
         <hr className="client-line1" />
         <div className="row">
           {posts.length > 0 ? (
-            posts.map((post, index) => (
-              <div key={index} className="col-md-6 user-post">
+            posts.map((post) => (
+              <div key={post._id} className="col-md-6 user-post">
                 <Post {...post} />
+                <Link to={`/edit/${post._id}`} className="btn btn-primary mt-2">
+                  Edit
+                </Link>
               </div>
             ))
           ) : (
