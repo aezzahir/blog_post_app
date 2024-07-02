@@ -18,10 +18,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />}></Route>
-          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/post/:id" element={<Posts />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/register" element={<RegisterPage />}></Route>
           <Route path="/create" element={<CreatePost />}></Route>
+          <Route path="/edit/:id" element={<EditPost />}></Route>
         </Route>
       </Routes>
     </UserContextProvider>

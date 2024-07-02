@@ -116,6 +116,10 @@ app.post("/post", upload.single("file"), async (req, resp) => {
   });
 });
 
+app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+  res.json(req.file)
+})
+
 app.get("/post", async (req, resp) => {
   resp.json(await Post.find().populate("author", ["email"]));
 });
